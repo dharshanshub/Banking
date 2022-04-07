@@ -28,6 +28,19 @@ namespace BankBal
 
 
         }
+        public bool UpdateUsers(Customer customer, Account account)
+        {
+            CustomerDal dal = new CustomerDal();
+            if (dal.UpdateUsers(customer, account))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

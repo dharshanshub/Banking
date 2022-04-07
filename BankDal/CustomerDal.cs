@@ -23,14 +23,7 @@ namespace BankDal
         {
             try
             {
-                customer.CRN = 231;
-                customer.Name = "dharshan";
-                customer.TransactionPwd = "IBPwd123";
-                customer.IbPassword = "dasdasdas";
-                customer.Email = "sddfdsf";
-                customer.Address = "chennai";
-                customer.BirthDate = "3/11/2000";
-                customer.MobileNo = "9884061001";
+                
                 string sql = $"insert into Customers(CRN,Name,TxnPwd,IBPwd,Email,Address,BirthDate,MobileNo) values ({customer.CRN},'{customer.Name}','{customer.TransactionPwd}','{customer.IbPassword}','{customer.Email}','{customer.Address}','{customer.BirthDate}','{customer.MobileNo}') ";
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cn.Open();
@@ -54,5 +47,34 @@ namespace BankDal
 
             }
         }
+        public bool UpdateUsers(Customer customer, Account account)
+        {
+            try
+            {
+                string sql = $"Update Customers set IBPwd = '{ customer.IbPassword }', Address = '{customer.Address}', Email = '{customer.Email}', MobileNo = '{customer.MobileNo}' where Accounts.AccNo = {account.AccNo} where exists(select Accounts.AccNo from Accounts where AccNo = {account.AccNo})";
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cn.Open();
+                int i = cmd.ExecuteNonQuery();
+
+
+                if (i == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
     }
 }
