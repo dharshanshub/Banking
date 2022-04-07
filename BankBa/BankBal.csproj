@@ -4,16 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2ADAB0A0-372C-4FAD-AC00-30D8DAE39766}</ProjectGuid>
+    <ProjectGuid>{34A3F55F-68A8-4C6C-921E-1E2B76A5F0D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BankEntity</RootNamespace>
-    <AssemblyName>BankEntity</AssemblyName>
+    <RootNamespace>BankBa</RootNamespace>
+    <AssemblyName>BankBa</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bogus, Version=34.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bogus.34.0.2\lib\net40\Bogus.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,16 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="Admin.cs" />
-    <Compile Include="Beneficiary.cs" />
-    <Compile Include="Branch.cs" />
-    <Compile Include="Customer.cs" />
+    <Compile Include="AccountBal.cs" />
+    <Compile Include="CustomerBal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transaction.cs" />
+    <Compile Include="TransactionBal.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\BankDal\BankDal.csproj">
+      <Project>{3f380e13-8c93-4f6e-874e-573a47b101d3}</Project>
+      <Name>BankDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BankEntity\BankEntity.csproj">
+      <Project>{2adab0a0-372c-4fad-ac00-30d8dae39766}</Project>
+      <Name>BankEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
