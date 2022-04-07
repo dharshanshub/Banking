@@ -25,10 +25,45 @@ namespace BankBal
                 return false;
             }
 
-           
 
+        }
+        public List<Transaction> ViewStatement(Account Account)
+        {
+            TransactionDal dal = new TransactionDal();
 
+            List<Transaction> list = dal.ViewStatement(Account);
+            return list;
+        }
 
+        public bool Withdraw(long AccountNo, long amount)
+        {
+            TransactionDal dal = new TransactionDal();
+            var dateAndTime = DateTime.Now;
+
+            var date = dateAndTime.Date.ToString();
+            if (dal.Withdraw(AccountNo, amount,date))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool Deposit(long AccountNo, long amount)
+        {
+            TransactionDal dal = new TransactionDal();
+            var dateAndTime = DateTime.Now;
+
+             var date = dateAndTime.Date.ToString();
+            if (dal.Deposit(AccountNo, amount,date))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
         }
     }

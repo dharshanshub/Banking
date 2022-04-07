@@ -8,6 +8,7 @@ namespace BankEntity
 {
     public class Transaction
     {
+        
         public long ReceiverAccNo { get; set; }
         public long SenderAccNo { get; set; }
         public long TransactionId{ get; set; }
