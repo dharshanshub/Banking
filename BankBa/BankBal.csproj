@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountBal.cs" />
+    <Compile Include="AdminBal.cs" />
+    <Compile Include="BeneficiaryBal.cs" />
     <Compile Include="CustomerBal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionBal.cs" />

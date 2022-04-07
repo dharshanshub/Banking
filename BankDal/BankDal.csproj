@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountDal.cs" />
+    <Compile Include="AdminDal.cs" />
+    <Compile Include="BeneficiaryDal.cs" />
     <Compile Include="CustomerDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionDal.cs" />
