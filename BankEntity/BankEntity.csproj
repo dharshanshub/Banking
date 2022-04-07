@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="Admin.cs" />
     <Compile Include="Beneficiary.cs" />
     <Compile Include="Branch.cs" />
     <Compile Include="Customer.cs" />

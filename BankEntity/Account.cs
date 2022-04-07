@@ -13,6 +13,7 @@ namespace BankEntity
         public long AccNo { get; set; }
         public string BranchCode { get; set; }
         public string OpenDate { get; set; }
+        public string Status { get; set; }
         public double Balance { get; set; }
 
 
