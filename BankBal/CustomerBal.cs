@@ -10,19 +10,31 @@ namespace BankBal
 {
     public  class CustomerBal
     {
+        string connectionString = @"Data Source=LAPTOP-NKUJCDUA\SQLEXPRESS;Initial Catlog=Bank;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private static Random random = new Random();
-        public Customer CreateNewUser(Customer customer)
+        public bool CreateNewUser(Customer customer, Account account)
         {
-           CustomerDal  dal = new CustomerDal();
-            Random rand = new Random();
+           CustomerDal  dal = new CustomerDal(connectionString);
+          /*  Random rand = new Random();
 
-            customer.CRN = rand.Next(200, 99999);
+            customer.CRN = rand.Next(200, 99999);*/
             customer.IbPassword = RandomString(10);
             customer.TransactionPwd = RandomString(10);
 
-            dal.CreateNewUser(customer);
-         
-            return customer;
+           string id= dal.CreateNewUser(customer);
+            
+            AccountDal dal1 = new AccountDal(connectionString);
+            account.CRN = Int32.Parse(id);
+
+            account.Status = "Active";
+            var dateAndTime = DateTime.Now;
+
+            account.OpenDate = dateAndTime.Date.ToString();
+            dal1.CreateNewUser(account,customer);
+
+
+
+            return true; ;
       
          
 
@@ -30,7 +42,7 @@ namespace BankBal
         }
         public bool UpdateUsers(Customer customer, Account account)
         {
-            CustomerDal dal = new CustomerDal();
+            CustomerDal dal = new CustomerDal(connectionString);
             if (dal.UpdateUsers(customer, account))
             {
                 return true;

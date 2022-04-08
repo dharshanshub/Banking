@@ -2,81 +2,139 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
+
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BankDal
 {
-    public  class CustomerDal
+    public class CustomerDal :BaseDataAccess
     {
-        SqlConnection cn;
-        public CustomerDal()
-        {
-            cn = new SqlConnection();
+        public CustomerDal(string connectionString) : base(connectionString) { }
 
-            cn.ConnectionString = ConfigurationManager.ConnectionStrings["Bank"].ConnectionString;
-
-        }
-        public bool CreateNewUser(Customer customer)
+        public string CreateNewUser(Customer customer)//Create_User_Customers_Table
         {
+
+            string id;
+            string sql = $"insert into Customers(Name,TxnPwd,IBPwd,Email,Address,BirthDate,MobileNo) values (@Name,@TxnPwd,@IBPwd,@Email,@Address,@BirthDate,@MobileNo)";
+
+            OpenConnection();
+
+            SqlTransaction trans = connection.BeginTransaction();
+
+            SqlCommand cmd = new SqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@Name", customer.Name);
+            cmd.Parameters.AddWithValue("@TxnPwd", customer.TransactionPwd);
+            cmd.Parameters.AddWithValue("@IBPwd", customer.IbPassword);
+            cmd.Parameters.AddWithValue("@Email", customer.Email);
+            cmd.Parameters.AddWithValue("@Address", customer.Address);
+            cmd.Parameters.AddWithValue("@BirthDate", customer.BirthDate);
+            cmd.Parameters.AddWithValue("@MobileNo", customer.MobileNo);
+
+            cmd.Transaction = trans;
+
+            SqlCommand cmd2 = connection.CreateCommand();
+            cmd2.Transaction = trans;
+            cmd2.CommandText = $"select @@identity";
+
             try
             {
-               
+                cmd.ExecuteNonQuery();
+                id = cmd2.ExecuteScalar().ToString();
+                trans.Commit();
+                customer.CRN = Int32.Parse(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return id;
+            //asser.Greaterthan(id,0) 
+        }
+        public List<Customer> GetALlUser()
+        {
 
-                
-                string sql = $"insert into Customers(CRN,Name,TxnPwd,IBPwd,Email,Address,BirthDate,MobileNo) values ({customer.CRN},'{customer.Name}','{customer.TransactionPwd}','{customer.IbPassword}','{customer.Email}','{customer.Address}','{customer.BirthDate}','{customer.MobileNo}') ";
-                
-                cn.Open();
+            int id;
+            string sql = $"select * from customers";
+
+            OpenConnection();
+
+            SqlCommand cmd = new SqlCommand(sql, connection);
+            try
+            {
+                SqlDataReader dr = cmd.ExecuteReader();
+                List<Customer> t_list = new List<Customer>();
+
+                while (dr.Read())
+                {
+                    Customer cus = new Customer();
+                    cus.CRN = (int)dr[0];
+                    cus.Name = (string)dr[1];
+                    cus.BranchCode = (string)dr[2];
+                    cus.TransactionPwd = (string)dr[3];
+                    cus.IbPassword = (string)dr[4];
+                    cus.Email = (string)dr[5];
+                    cus.Address = (string)dr[6];
+                    cus.BirthDate = dr[7].ToString();
+                    cus.MobileNo = (string)dr[8];
+
+
+                    t_list.Add(cus);
+                }
+
+                return t_list;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally { CloseConnection(); }
+
+
+
+
+
+
+
+
+
+            //asser.Greaterthan(id,0) 
+        }
+
+        public bool UpdateUsers(Customer customer, Account account)//not working
+        {
+            CreateConnection();
+            string sql = $"Update Customers set IBPwd = @IbPwd, Address = @Address, Email = @Email, MobileNo = @MobileNo where Accounts.AccNo = @AccNo where exists(select Accounts.AccNo from Accounts where AccNo = @AccNo)";
+
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@IbPwd", customer.IbPassword);
+            cmd.Parameters.AddWithValue("@Address", customer.Address);
+            cmd.Parameters.AddWithValue("@Email", customer.Email);
+            cmd.Parameters.AddWithValue("@MobileNo", customer.MobileNo);
+            cmd.Parameters.AddWithValue("@AccNo", account.AccNo);
+
+            try
+            {
                int i= cmd.ExecuteNonQuery();
-                if (i == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                if (i == 1) { return true; } else { return false; }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
             finally
             {
-                cn.Close();
-
+                CloseConnection();
             }
         }
-        public bool UpdateUsers(Customer customer, Account account)
-        {
-            try
-            {
-                string sql = $"Update Customers set IBPwd = '{ customer.IbPassword }', Address = '{customer.Address}', Email = '{customer.Email}', MobileNo = '{customer.MobileNo}' where Accounts.AccNo = {account.AccNo} where exists(select Accounts.AccNo from Accounts where AccNo = {account.AccNo})";
-                SqlCommand cmd = new SqlCommand(sql, cn);
-                cn.Open();
-                int i = cmd.ExecuteNonQuery();
-
-
-                if (i == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-                cn.Close();
-            }
-        }
-
     }
 }
+

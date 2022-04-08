@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace BankBal
 {
-    public  class TransactionBal
+    public class TransactionBal
     {
-        public bool FundTransfer( Transaction t, Account a )
+        string connectionString = @"Data Source=LAPTOP-NKUJCDUA\SQLEXPRESS;Initial Catlog=Bank;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public bool FundTransfer(Transaction t, Account a)
         {
-            TransactionDal dal = new TransactionDal();
+            TransactionDal dal = new TransactionDal(connectionString);
 
 
 
@@ -29,19 +30,19 @@ namespace BankBal
         }
         public List<Transaction> ViewStatement(Account Account)
         {
-            TransactionDal dal = new TransactionDal();
+            TransactionDal dal = new TransactionDal(connectionString);
 
             List<Transaction> list = dal.ViewStatement(Account);
             return list;
         }
 
-        public bool Withdraw(long AccountNo, long amount)
+        public bool Withdraw(Account  account, Transaction transaction)
         {
-            TransactionDal dal = new TransactionDal();
+            TransactionDal dal = new TransactionDal(connectionString);
             var dateAndTime = DateTime.Now;
 
-            var date = dateAndTime.Date.ToString();
-            if (dal.Withdraw(AccountNo, amount,date))
+         transaction.TransactionDate = dateAndTime.Date.ToString();
+            if (dal.Withdraw(transaction,account))
             {
                 return true;
             }
@@ -50,13 +51,13 @@ namespace BankBal
                 return false;
             }
         }
-        public bool Deposit(long AccountNo, long amount)
+        public bool Deposit(Account account, Transaction transaction)
         {
-            TransactionDal dal = new TransactionDal();
+            TransactionDal dal = new TransactionDal(connectionString);
             var dateAndTime = DateTime.Now;
 
-             var date = dateAndTime.Date.ToString();
-            if (dal.Deposit(AccountNo, amount,date))
+            transaction.TransactionDate = dateAndTime.Date.ToString();
+            if (dal.Deposit(transaction,account))
             {
                 return true;
             }

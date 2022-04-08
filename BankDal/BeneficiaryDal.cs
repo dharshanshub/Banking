@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +11,11 @@ namespace BankDal
 {
     public class BeneficiaryDal
     {
-              SqlConnection cn;
+        SqlConnection cn;
         public BeneficiaryDal()
         {
             cn = new SqlConnection();
 
-            cn.ConnectionString = ConfigurationManager.ConnectionStrings["Bank"].ConnectionString;
 
         }
         public bool AddBeneficiary(Beneficiary b)
@@ -27,21 +26,24 @@ namespace BankDal
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cn.Open();
                 int i = cmd.ExecuteNonQuery();
-                if (i == 1) { 
-                    return true; 
+                if (i == 1)
+                {
+                    return true;
                 }
-                else { 
-                    return false; 
+                else
+                {
+                    return false;
                 }
-            }catch (Exception ex) 
-            { 
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
-            finally 
-            { 
-                cn.Close(); 
+            finally
+            {
+                cn.Close();
             }
-           
+
         }
 
         public bool DeleteBeneficiary(Beneficiary beneficiary)

@@ -10,27 +10,7 @@ namespace BankBal
 {
     public class AccountBal
     {
-        public bool CreateNewUser(Customer customer, Account account)
-        {
-            AccountDal dal = new AccountDal();
+        string connectionString = @"Data Source=LAPTOP-NKUJCDUA\SQLEXPRESS;Initial Catlog=Bank;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-            account.Status = "Active";
-            var dateAndTime = DateTime.Now;
-
-            account.OpenDate = dateAndTime.Date.ToString();
-
-
-            if (dal.CreateNewUser(account, customer))
-
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-
-        }
     }
 }
