@@ -14,9 +14,4 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BankDal\BankDal.csproj" />
-    <ProjectReference Include="..\BankEntity\BankEntity.csproj" />
-  </ItemGroup>
-
 </Project>

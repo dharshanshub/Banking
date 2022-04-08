@@ -1,7 +1,7 @@
 ﻿using BankEntity;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -9,25 +9,19 @@ using System.Threading.Tasks;
 
 namespace BankDal
 {
-    public class AccountDal
+    public class AccountDal:BaseDataAccess
     {
-        SqlConnection cn;
-        public AccountDal()
-        {
-            cn = new SqlConnection();
 
-            cn.ConnectionString = ConfigurationManager.ConnectionStrings["Bank"].ConnectionString;
-
-        }
+        public AccountDal(string connectionString) : base(connectionString) { }
         public bool CreateNewUser(Account account,Customer customer )
         {
             try
             {
                 
                 string sql = $"insert into Accounts(CRN,OpenDate,Status,Balance) values ('{customer.CRN}',{account.OpenDate},'{account.Status}','{account.Balance}') ";
-                SqlCommand cmd = new SqlCommand(sql, cn);
-                cn.Open();
-               int i = cmd.ExecuteNonQuery();
+                SqlCommand cmd = new SqlCommand();
+                
+               int i = cmd.ExecuteNonQuery(sql);
                 if(i== 0)
                 {
                     return false;

@@ -27,7 +27,7 @@ namespace BankDal
 
                 
                 string sql = $"insert into Customers(CRN,Name,TxnPwd,IBPwd,Email,Address,BirthDate,MobileNo) values ({customer.CRN},'{customer.Name}','{customer.TransactionPwd}','{customer.IbPassword}','{customer.Email}','{customer.Address}','{customer.BirthDate}','{customer.MobileNo}') ";
-                SqlCommand cmd = new SqlCommand(sql, cn);
+                
                 cn.Open();
                int i= cmd.ExecuteNonQuery();
                 if (i == 0)
