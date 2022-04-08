@@ -11,7 +11,8 @@ namespace BankEntity
         public long SenderAccNo { get; set; }
         public long ReceiverAccNo { get; set; }
         public string NickName { get; set; }
-        public string Branchcode { get; set; }
+        public string BranchName { get; set; }
+        public string IFSC { get; set; }
 
     }
 }

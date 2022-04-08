@@ -18,10 +18,24 @@ namespace TestProject
 
             [Test]
 
-            public void  CreateNewUser(Customer customer)
+            public void CreateNewuserTest()
             {
-                CustomerDal p = new CustomerDal();
+                var p = new Customer
+                {
+                    CRN = 123,
+                    Name = "dharshan",
+                    Email = "dharshan@gmai.com",
+                    BirthDate = "03/11/2000",
+                    IbPassword = "dasdsd",
+                    TransactionPwd = "asdasdasdas",
+                    Address = "chennai",
+                    MobileNo = "9884061001"
+                };
+                CustomerDal d = new CustomerDal();
 
+                var er = d.CreateNewUser(p);
+                    var ac = true;
+                Assert.AreEqual(er, ac);
 
 
                
