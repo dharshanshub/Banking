@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BankDal
 {
     public class CustomerDal :BaseDataAccess
@@ -99,45 +100,49 @@ namespace BankDal
 
 
 
-
-
-
-
-
-
-            //asser.Greaterthan(id,0) 
         }
-     /*   public List<Customer> GenrateCredentials(Customer customer)
+       
+        public List<Customer1> GenrateCredentials(Customer customer)
         {
             try { 
-            string sql = $"Select CRN,TxnPwd,IBPwd,BrCode from Customers where MobileNo = @mobno";
+
+                  string sql = $"Select CRN,TxnPwd,IBPwd,BrCode from Customers where MobileNo = @mobno";
+                  string sql1 = $"Select AccNo from Accounts where CRN=(Select CRN from Customers where Customers.MobileNo =@mobno)";
+                  OpenConnection();
+
+                  SqlCommand cmd = new SqlCommand(sql, connection);
+                  SqlCommand cmd2 = new SqlCommand(sql1, connection);
 
 
-            OpenConnection();
+                  cmd.Parameters.AddWithValue("@mobno", customer.MobileNo);
+                  cmd2.Parameters.AddWithValue("@mobno", customer.MobileNo);
+                  SqlDataReader dr = cmd.ExecuteReader();
+                  List<Customer1> cust = new List<Customer1>();
 
-            SqlCommand cmd = new SqlCommand(sql, connection);
+                  while (dr.Read())
+                  {
+                    Customer1 cus = new Customer1();
+                    cus.CRN = (int)dr[0];
+                    cus.BranchCode = (string)dr[3];
+                    cus.TransactionPwd = (string)dr[1];
+                    cus.IbPassword = (string)dr[2];
+                    cust.Add(cus);
+                  }
+                
+                    dr.Close();
+             
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        Customer1 cus = new Customer1();
+                        cus.AccNo = (long)dr2[0];
+                        cust.Add(cus);
+                    }
+                    dr2.Close();
 
-
-            cmd.Parameters.AddWithValue("@mobno", customer.MobileNo);
-
-
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            List<Customer> cust = new List<Customer>();
-
-            while (dr.Read())
-            {
-                Customer cus = new Customer();
-                cus.CRN = (int)dr[0];
-                cus.BranchCode = (string)dr[1];
-                cus.TransactionPwd = (string)dr[3];
-                cus.IbPassword = (string)dr[4];
-                cust.Add(cus);
+                    return cust;
             }
-                dr.Close();
-                return cust;
-            }catch (Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -145,9 +150,8 @@ namespace BankDal
             {
                 CloseConnection();
             }
-            
-
-        }*/
+          
+        }
 
         public bool UpdateUsers(Customer customer, Account account)
         {

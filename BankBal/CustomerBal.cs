@@ -54,18 +54,14 @@ namespace BankBal
 
         }
 
-      /*  public List<Customer> GenrateCredentials(Customer customer)
+        public List<Customer1> GenrateCredentials(Customer customer)
         {
             CustomerDal dal = new CustomerDal(connectionString);
-            List<Customer> cust= dal.GenrateCredentials(customer);
-           
-            
+            List<Customer1> cust= dal.GenrateCredentials(customer);
          
-            return cust;
-            
-                  
+            return cust;         
 
-        }*/
+        }
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

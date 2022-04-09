@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankBal
+namespace BankDal
 {
-    public class AdminBal
+    public class LoginDal
     {
+
     }
 }

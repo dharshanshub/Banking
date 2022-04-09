@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankEntity
 {
-    public  class Admin
+    public  class Login
     {
+        public long AccNo { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
     }
