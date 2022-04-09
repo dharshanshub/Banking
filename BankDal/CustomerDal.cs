@@ -107,11 +107,52 @@ namespace BankDal
 
             //asser.Greaterthan(id,0) 
         }
-
-        public bool UpdateUsers(Customer customer, Account account)//not working
+     /*   public List<Customer> GenrateCredentials(Customer customer)
         {
-            CreateConnection();
-            string sql = $"Update Customers set IBPwd = @IbPwd, Address = @Address, Email = @Email, MobileNo = @MobileNo where Accounts.AccNo = @AccNo where exists(select Accounts.AccNo from Accounts where AccNo = @AccNo)";
+            try { 
+            string sql = $"Select CRN,TxnPwd,IBPwd,BrCode from Customers where MobileNo = @mobno";
+
+
+            OpenConnection();
+
+            SqlCommand cmd = new SqlCommand(sql, connection);
+
+
+            cmd.Parameters.AddWithValue("@mobno", customer.MobileNo);
+
+
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            List<Customer> cust = new List<Customer>();
+
+            while (dr.Read())
+            {
+                Customer cus = new Customer();
+                cus.CRN = (int)dr[0];
+                cus.BranchCode = (string)dr[1];
+                cus.TransactionPwd = (string)dr[3];
+                cus.IbPassword = (string)dr[4];
+                cust.Add(cus);
+            }
+                dr.Close();
+                return cust;
+            }catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            
+
+        }*/
+
+        public bool UpdateUsers(Customer customer, Account account)
+        {
+          
+            string sql = $"Update Customers set IBPwd =@IbPwd,Address=@Address,Email=@Email,MobileNo=@MobileNo where CRN=(select CRN  From Accounts where Accounts.AccNo=@AccNo)"; 
 
             OpenConnection();
             SqlCommand cmd = new SqlCommand(sql, connection);
@@ -123,17 +164,20 @@ namespace BankDal
 
             try
             {
-               int i= cmd.ExecuteNonQuery();
-                if (i == 1) { return true; } else { return false; }
+               cmd.ExecuteNonQuery();
+               
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                return false;
                 throw;
             }
             finally
             {
                 CloseConnection();
             }
+            return true;
         }
     }
 }

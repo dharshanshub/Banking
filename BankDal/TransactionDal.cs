@@ -20,8 +20,8 @@ namespace BankDal
             CreateConnection();
 
             string sql1 = $"insert into Transactions(SenderAccNo,ReceiverAccNo,BrCode,TrDate,TrAmount,TrType,Description) values(@AccNo,@ReceiverAccNo,@BrCode,@TrDate,@TrAmount,@TrType,@Description)";
-            string sql2 = $"update Accounts set Balance = Balance - @TrAmount where AccNumber = @AccNo";
-            string sql3 = $"update Accounts set Balance =Balance + @TrAmount where AccNumber = @AccNo";
+            string sql2 = $"update Accounts set Balance = Balance - @TrAmount where AccNo = @AccNO";
+            string sql3 = $"update Accounts set Balance =Balance + @TrAmount where AccNo = @ReceiverAccNo";
 
             OpenConnection();
             SqlTransaction trans = connection.BeginTransaction();
@@ -45,7 +45,7 @@ namespace BankDal
 
 
             cmd3.Parameters.AddWithValue("@TrAmount", t.TransactionAmount);
-            cmd3.Parameters.AddWithValue("@AccNo", a.AccNo);
+            cmd3.Parameters.AddWithValue("@ReceiverAccNo", t.ReceiverAccNo);
             cmd3.Transaction = trans;
 
             try
@@ -58,6 +58,7 @@ namespace BankDal
             catch (Exception)
             {
                 trans.Rollback();
+                return false;
             }
             finally
             {
@@ -69,7 +70,7 @@ namespace BankDal
         {
             CreateConnection();
             string sql1 = $"update Accounts set Balance = Balance - @TrAmount where AccNo = @AccNo";
-            string sql2 = $"insert into Transactions (AccNo,TrAmount,TrType,TrDate) values(@AccNo, @TrAmount, 'Debit' ,@TrDate)";
+            string sql2 = $"insert into Transactions (SenderAccNo, ReceiverAccNo,TrAmount,TrType,TrDate) values(689344, @AccNo, @TrAmount, 'Debit' ,@TrDate)";
 
             OpenConnection();
 
@@ -81,6 +82,7 @@ namespace BankDal
             cmd1.Parameters.AddWithValue("@TrAmount", t.TransactionAmount);
             cmd1.Parameters.AddWithValue("@AccNo", a.AccNo);
             cmd2.Parameters.AddWithValue("@TrAmount", t.TransactionAmount);
+            cmd2.Parameters.AddWithValue("@AccNo", a.AccNo);
             cmd2.Parameters.AddWithValue("@TrDate", t.TransactionDate);
 
             cmd1.Transaction = trans;
@@ -96,6 +98,7 @@ namespace BankDal
             catch (Exception)
             {
                 trans.Rollback();
+                return false;
             }
             finally
             {
@@ -108,34 +111,40 @@ namespace BankDal
         {
             CreateConnection();
             string sql1 = $"update Accounts set Balance = Balance + @TrAmount where AccNo = @AccNo";
-            string sql2 = $"insert into Transactions (AccNo,TrAmount,TrType,TrDate) values(@AccNo, @TrAmount, 'Credit' ,@TrDate)";
+            string sql2 = $"insert into Transactions (SenderAccNo, ReceiverAccNo,TrAmount,TrType,TrDate) values(689343,@AccNo, @TrAmount, 'Credit' ,@TrDate)";
+            string sql3 = $"update Accounts set Balance = Balance - @TrAmount where AccNo = 689344";
 
             OpenConnection();
 
             SqlTransaction trans = connection.BeginTransaction();
             SqlCommand cmd1 = new SqlCommand(sql1, connection);
             SqlCommand cmd2 = new SqlCommand(sql2, connection);
+            SqlCommand cmd3 = new SqlCommand(sql3, connection);
 
 
             cmd1.Parameters.AddWithValue("@TrAmount", t.TransactionAmount);
             cmd1.Parameters.AddWithValue("@AccNo", a.AccNo);
-           
+            cmd2.Parameters.AddWithValue("@AccNo", a.AccNo);
             cmd2.Parameters.AddWithValue("@TrAmount", t.TransactionAmount);
             cmd2.Parameters.AddWithValue("@TrDate", t.TransactionDate);
+            cmd3.Parameters.AddWithValue("@TrAmount", t.TransactionAmount);
 
             cmd1.Transaction = trans;
             cmd2.Transaction = trans;
+            cmd3.Transaction = trans;
 
 
             try
             {
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
+                cmd3.ExecuteNonQuery();
                 trans.Commit();
             }
             catch (Exception)
             {
                 trans.Rollback();
+                return false;
             }
             finally
             {
@@ -149,15 +158,18 @@ namespace BankDal
             try
             {
                 CreateConnection();
-                string sql = $"select * from Transactions where AccNo = @AccNo";
+                string sql = $"select * from Transactions where SenderAccNo = @AccNo";
                 string sql1 = $"select * from Transactions where ReceiverAccNo=@AccNo";
                 OpenConnection();
 
                 SqlCommand cmd = new SqlCommand(sql, connection);
                 SqlCommand cmd1 = new SqlCommand(sql1, connection);
 
+                cmd.Parameters.AddWithValue("@AccNo", Account.AccNo);
+                cmd1.Parameters.AddWithValue("@AccNo", Account.AccNo);
+
                 SqlDataReader dr = cmd.ExecuteReader();
-                SqlDataReader dr1 = cmd1.ExecuteReader();
+               
                 List<Transaction> t_list = new List<Transaction>();
 
                 while (dr.Read())
@@ -168,23 +180,26 @@ namespace BankDal
                     t.ReceiverAccNo = (long)dr[2];
                     t.Branchcode = dr[3].ToString();
                     t.TransactionDate = dr[4].ToString();
-                    t.TransactionAmount = (long)dr[5];
+                    t.TransactionAmount = double.Parse(dr[5].ToString());
                     t.TransactionType = "Debit";
                     t.Description = dr[7].ToString();
                     t_list.Add(t);
                 }
+                dr.Close();
+                SqlDataReader dr1 = cmd1.ExecuteReader();
                 while (dr1.Read())
                 {
                     Transaction j = new Transaction();
-                    j.TransactionId = (long)dr[0];
-                    j.ReceiverAccNo = (long)dr[2];
-                    j.Branchcode = dr[3].ToString();
-                    j.TransactionDate = dr[4].ToString();
-                    j.TransactionAmount = (long)dr[5];
+                    j.TransactionId = (long)dr1[0];
+                    j.ReceiverAccNo = (long)dr1[2];
+                    j.Branchcode = dr1[3].ToString();
+                    j.TransactionDate = dr1[4].ToString();
+                    j.TransactionAmount = double.Parse(dr1[5].ToString());
                     j.TransactionType = "Credit";
-                    j.Description = dr[7].ToString();
+                    j.Description = dr1[7].ToString();
                     t_list.Add(j);
                 }
+                dr1.Close();
 
                 return t_list;
             }

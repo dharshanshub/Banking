@@ -12,7 +12,7 @@ namespace BankBal
     {
         string connectionString = @"Data Source=LAPTOP-NKUJCDUA\SQLEXPRESS;Initial Catlog=Bank;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private static Random random = new Random();
-        public bool CreateNewUser(Customer customer, Account account)
+        public string  CreateNewUser(Customer customer, Account account)
         {
            CustomerDal  dal = new CustomerDal(connectionString);
           /*  Random rand = new Random();
@@ -34,7 +34,7 @@ namespace BankBal
 
 
 
-            return true; ;
+            return id; 
       
          
 
@@ -53,6 +53,19 @@ namespace BankBal
             }
 
         }
+
+      /*  public List<Customer> GenrateCredentials(Customer customer)
+        {
+            CustomerDal dal = new CustomerDal(connectionString);
+            List<Customer> cust= dal.GenrateCredentials(customer);
+           
+            
+         
+            return cust;
+            
+                  
+
+        }*/
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

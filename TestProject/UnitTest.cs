@@ -2,6 +2,7 @@
 using BankEntity;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace TestProject
 {
@@ -49,7 +50,7 @@ namespace TestProject
 
                 Email = "hello@gmail.com",
 
-                IbPassword = "dasdsd",
+                IbPassword = "broclesber",
 
                 Address = "chennai",
                 MobileNo = "9884061001"
@@ -61,11 +62,12 @@ namespace TestProject
 
             };
             CustomerDal dal = new CustomerDal(connectionString);
-            bool er;
-            if(dal.UpdateUsers(p, c)) {  er= true; } else { er= false; }
+            
+            bool er =dal.UpdateUsers(p, c);
             Assert.IsTrue(er);
         }
         //accountdal
+        
         [Test]
         public void CreateNewUseraccTest()
         {
@@ -92,7 +94,98 @@ namespace TestProject
             Assert.AreEqual(er,ac);
 
         }
+        [Test]
+        public void FundTransferTest()
+        {
+            var t = new Transaction
+            {
+                ReceiverAccNo = 689342,
+                Branchcode = "CHN001",
+                TransactionAmount = 1660,
+                TransactionDate = "09/08/2000",
+                TransactionType = "Credit",
+                Description="pay",
+                
 
+            };
+            var a = new Account
+            {
+                AccNo = 689341,
+            };
+            TransactionDal dal = new TransactionDal(connectionString);
+            bool er;
+            if(dal.FundTransfer(t,a)) { er = true; } else { er = false; }
+            Assert.IsTrue(er);
+        }
+        [Test]
+        public void DepoitTest()
+        {
+            var t = new Transaction
+            {
+              
+                Branchcode = "CHN001",
+                TransactionAmount = 16660,
+                TransactionDate = "09/08/2000",
+             
+            };
+            var a = new Account
+            {
+                AccNo = 689341
+            };
+            TransactionDal dal = new TransactionDal(connectionString);
+            bool er;
+            if (dal.Deposit(t, a)) { er = true; } else { er = false; }
+            Assert.IsTrue(er);
+        }
+        [Test]
+        public void WithDrawTest()
+        {
+            var t = new Transaction
+            {
+
+                Branchcode = "CHN001",
+                TransactionAmount = 1660,
+                TransactionDate = "09/08/2000",
+
+            };
+            var a = new Account
+            {
+                AccNo = 689341
+            };
+            TransactionDal dal = new TransactionDal(connectionString);
+            bool er;
+            if (dal.Withdraw(t, a)) { er = true; } else { er = false; }
+            Assert.IsTrue(er);
+        }
+        [Test]
+        public void ViewStatement()
+        {
+            var a = new Account { AccNo = 689341 };
+            TransactionDal dal = new TransactionDal(connectionString);
+           List<Transaction> lst= dal.ViewStatement(a);
+            Assert.IsNotNull(lst);
+        }
+        [Test]
+        public void AddBeneficiaryTest()
+        {
+            var b = new Beneficiary
+            {
+                BranchName = "Chennai main",
+                IFSC = "ZIGMA00702",
+                NickName = "vijay",
+                ReceiverAccNo = 689342,
+                SenderAccNo = 689341,
+                
+
+            };
+            BeneficiaryDal dal = new BeneficiaryDal(connectionString);
+            dal.AddBeneficiary(b);
+            dal.DeleteBeneficiary(b);
+
+            var er = dal.GetAllBeneficiaries(b).Count;
+            var ar = 0;
+            Assert.AreEqual(er, ar);
+        }
 
 
     }
