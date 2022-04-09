@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Banking", "Banking\Banking.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{D251763F-4BF0-4504-ABC5-520A7ED51034}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankBal", "BankBal\BankBal.csproj", "{48DAA41A-FB29-4A95-AD1A-8DB56F648096}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankBal", "BankBal\BankBal.csproj", "{48DAA41A-FB29-4A95-AD1A-8DB56F648096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankDal", "BankDal\BankDal.csproj", "{37B31C37-5DD7-463E-9253-668577D38049}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankDal", "BankDal\BankDal.csproj", "{37B31C37-5DD7-463E-9253-668577D38049}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankEntity", "BankEntity\BankEntity.csproj", "{4084C480-E2BC-4A1B-BDB3-95CF5C0EA703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankEntity", "BankEntity\BankEntity.csproj", "{4084C480-E2BC-4A1B-BDB3-95CF5C0EA703}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi", "BankApi\BankApi.csproj", "{DAFFD6B0-0F2E-4E3A-96AC-9AA1290A5B5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4084C480-E2BC-4A1B-BDB3-95CF5C0EA703}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4084C480-E2BC-4A1B-BDB3-95CF5C0EA703}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4084C480-E2BC-4A1B-BDB3-95CF5C0EA703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFFD6B0-0F2E-4E3A-96AC-9AA1290A5B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFFD6B0-0F2E-4E3A-96AC-9AA1290A5B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFFD6B0-0F2E-4E3A-96AC-9AA1290A5B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFFD6B0-0F2E-4E3A-96AC-9AA1290A5B5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

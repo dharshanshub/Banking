@@ -118,15 +118,15 @@ namespace BankDal
                   cmd2.Parameters.AddWithValue("@mobno", customer.MobileNo);
                   SqlDataReader dr = cmd.ExecuteReader();
                   List<Customer1> cust = new List<Customer1>();
-
-                  while (dr.Read())
+                Customer1 cus = new Customer1();
+                while (dr.Read())
                   {
-                    Customer1 cus = new Customer1();
+                    
                     cus.CRN = (int)dr[0];
                     cus.BranchCode = (string)dr[3];
                     cus.TransactionPwd = (string)dr[1];
                     cus.IbPassword = (string)dr[2];
-                    cust.Add(cus);
+                    
                   }
                 
                     dr.Close();
@@ -134,7 +134,7 @@ namespace BankDal
                     SqlDataReader dr2 = cmd2.ExecuteReader();
                     while (dr2.Read())
                     {
-                        Customer1 cus = new Customer1();
+                      
                         cus.AccNo = (long)dr2[0];
                         cust.Add(cus);
                     }

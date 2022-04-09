@@ -13,7 +13,7 @@ namespace BankDal
     public class AccountDal : BaseDataAccess
     {
         public AccountDal(string connectionString) : base(connectionString) { }
-        public bool CreateNewUser(Account account, Customer customer)//Create_User_Accounts_Table
+        public bool CreateNewUser(Account account)//Create_User_Accounts_Table
         {
             string sql = $"insert into Accounts(CRN,OpenDate,Status,Balance) values (@CRN,@OpenDate,@Status,@Balance)";
             try
@@ -21,7 +21,7 @@ namespace BankDal
                 OpenConnection();
                 ExecuteNonQuery(
                     sql, CommandType.Text,
-                            new[] { new SqlParameter("@CRN", customer.CRN), new SqlParameter("@OpenDate", account.OpenDate),
+                            new[] { new SqlParameter("@CRN", account.CRN), new SqlParameter("@OpenDate", account.OpenDate),
                                 new SqlParameter("@Status",account.Status), new SqlParameter("@Balance", account.Balance)});
             }
             catch (Exception)

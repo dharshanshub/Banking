@@ -8,36 +8,34 @@ using System.Threading.Tasks;
 
 namespace BankBal
 {
-    public  class CustomerBal
+    public  class CustomerBal:BaseDataAccess
     {
-        string connectionString = @"Data Source=LAPTOP-NKUJCDUA\SQLEXPRESS;Initial Catlog=Bank;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public CustomerBal(string connectionString) : base(connectionString) { }
+    
+        string connectionString = @"Data Source=LAPTOP-NKUJCDUA\SQLEXPRESS;database=Bank;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private static Random random = new Random();
-        public string  CreateNewUser(Customer customer, Account account)
+        public bool  CreateNewUser(Customer customer)
         {
            CustomerDal  dal = new CustomerDal(connectionString);
-          /*  Random rand = new Random();
-
-            customer.CRN = rand.Next(200, 99999);*/
+       
             customer.IbPassword = RandomString(10);
             customer.TransactionPwd = RandomString(10);
 
            string id= dal.CreateNewUser(customer);
-            
-            AccountDal dal1 = new AccountDal(connectionString);
-            account.CRN = Int32.Parse(id);
-
-            account.Status = "Active";
-            var dateAndTime = DateTime.Now;
-
-            account.OpenDate = dateAndTime.Date.ToString();
-            dal1.CreateNewUser(account,customer);
-
-
-
-            return id; 
-      
-         
-
+            AccountBal bal = new AccountBal(connectionString);
+            if(bal.CreateNewUser(id))
+            {
+                return true;
+            }
+            else { return false; }
+           
+     
+        }
+        public List<Customer> ShowAllCustomers()
+        {
+            CustomerDal dal = new CustomerDal(connectionString);
+            List<Customer> list= dal.GetALlUser();
+            return list;
 
         }
         public bool UpdateUsers(Customer customer, Account account)

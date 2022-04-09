@@ -67,7 +67,7 @@ namespace TestProject
             Assert.IsTrue(er);
         }
         //accountdal
-        
+      /*  
         [Test]
         public void CreateNewUseraccTest()
         {
@@ -78,9 +78,6 @@ namespace TestProject
 
             var p = new Account
             {
-
-               
-                
                  Balance = 3233,
                 OpenDate="03/11/2000",
                Status = "Active",
@@ -93,7 +90,7 @@ namespace TestProject
             var ac=dal.GetALlAccounts().Count;
             Assert.AreEqual(er,ac);
 
-        }
+        }*/
         [Test]
         public void FundTransferTest()
         {
