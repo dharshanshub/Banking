@@ -57,7 +57,7 @@ namespace BankDal
                 CloseConnection();
             }
             return id;
-            //asser.Greaterthan(id,0) 
+       
         }
         public List<Customer> GetALlUser()
         {

@@ -91,8 +91,8 @@ namespace TestProject
             Assert.AreEqual(er,ac);
 
         }*/
-        [Test]
-        public void FundTransferTest()
+        //
+        /*public void FundTransferTest()
         {
             var t = new Transaction
             {
@@ -111,9 +111,10 @@ namespace TestProject
             };
             TransactionDal dal = new TransactionDal(connectionString);
             bool er;
-            if(dal.FundTransfer(t,a)) { er = true; } else { er = false; }
-            Assert.IsTrue(er);
-        }
+            if(dal.FundTransfer(t)) { er = true; } else { er = false; }
+            Assert.IsTrue(er);*/
+        //
+
         [Test]
         public void DepoitTest()
         {
@@ -131,7 +132,7 @@ namespace TestProject
             };
             TransactionDal dal = new TransactionDal(connectionString);
             bool er;
-            if (dal.Deposit(t, a)) { er = true; } else { er = false; }
+            if (dal.Deposit(t)) { er = true; } else { er = false; }
             Assert.IsTrue(er);
         }
         [Test]
@@ -151,7 +152,7 @@ namespace TestProject
             };
             TransactionDal dal = new TransactionDal(connectionString);
             bool er;
-            if (dal.Withdraw(t, a)) { er = true; } else { er = false; }
+            if (dal.Withdraw(t)) { er = true; } else { er = false; }
             Assert.IsTrue(er);
         }
         [Test]
