@@ -18,6 +18,7 @@ namespace BankApi.Controllers
         }
 
         [HttpPost]
+
         public IActionResult AddBeneficiary(Beneficiary beneficiary)
         {
             if (bal.AddBeneficiary(beneficiary))
@@ -31,11 +32,13 @@ namespace BankApi.Controllers
 
         }
         [HttpGet("{id:long}")]
+        
         public IActionResult GetBeneficiary(long id)
         {
             return Ok(bal.ShowAllBeneficiaries(id));
         }
         [HttpDelete("{id:long}")]
+      
         public IActionResult DeleteBeneficiary(long id)
         {
             return Ok(bal.DeleteBeneficiary(id));

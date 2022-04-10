@@ -18,6 +18,7 @@ namespace BankApi.Controllers
         }
 
         [HttpPost]
+      
         public IActionResult FundTransfer(Transaction transaction)
         {
           string id = bal.FundTransfer(transaction);
@@ -41,6 +42,7 @@ namespace BankApi.Controllers
 
         }
         [HttpGet("{id:long}")]
+   
         public IActionResult ViewStatement(long id)
         {
             return Ok(bal.ViewStatement(id));
