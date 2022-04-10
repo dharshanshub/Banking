@@ -25,11 +25,13 @@ namespace BankBal
 
 
         }
-        public List<Transaction> ViewStatement(Account Account)
+        public List<Transaction> ViewStatement(long id)
         {
             TransactionDal dal = new TransactionDal(connectionString);
+            Account account = new Account();
+            account.AccNo = id;
 
-            List<Transaction> list = dal.ViewStatement(Account);
+            List<Transaction> list = dal.ViewStatement(account);
             return list;
         }
 

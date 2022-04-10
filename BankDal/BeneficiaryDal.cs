@@ -15,7 +15,7 @@ namespace BankDal
         public BeneficiaryDal(string connectionString) : base(connectionString) { }
 
 
-        public bool AddBeneficiary(Beneficiary b)//updated
+        public bool AddBeneficiary(Beneficiary b)
         {
 
             string sql = $"insert into Beneficiary values (@SenderAccNo, @ReceiverAccNo, @NickName, @BranchName, @IFSC)";
@@ -34,8 +34,9 @@ namespace BankDal
             }
             catch (Exception)
             {
-                throw;
                 return false;
+                throw;
+               
             }
             finally
             {
@@ -89,7 +90,7 @@ namespace BankDal
                 {
                     Beneficiary b = new Beneficiary();
 
-                    b.SenderAccNo = (long)dr[0];
+                 
                     b.ReceiverAccNo = (long)dr[1];
                     b.NickName = dr[2].ToString();
                     b.BranchName = dr[3].ToString();

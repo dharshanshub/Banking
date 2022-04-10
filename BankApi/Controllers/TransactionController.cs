@@ -26,5 +26,25 @@ namespace BankApi.Controllers
 
 
         }
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult WithDraw(Transaction transaction)
+        {
+            return Ok(bal.Withdraw(transaction));
+
+        }
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult Deposit(Transaction transaction)
+        {
+            return Ok(bal.Deposit(transaction));
+
+        }
+        [HttpGet("{id:long}")]
+        public IActionResult ViewStatement(long id)
+        {
+            return Ok(bal.ViewStatement(id));
+        }
+
     }
 }

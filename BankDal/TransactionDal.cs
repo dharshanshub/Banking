@@ -76,7 +76,7 @@ namespace BankDal
             return id;
 
         }
-        public bool Withdraw(Transaction t)//done
+        public bool Withdraw(Transaction t)
         {
             CreateConnection();
             string sql1 = $"update Accounts set Balance = Balance - @TrAmount where AccNo = @AccNo";
@@ -187,6 +187,7 @@ namespace BankDal
                     Transaction t = new Transaction();
 
                     t.TransactionId = (long)dr[0];
+                    t.SenderAccNo = (long)dr[1];
                     t.ReceiverAccNo = (long)dr[2];
                     t.Branchcode = dr[3].ToString();
                     t.TransactionDate = dr[4].ToString();
@@ -201,6 +202,7 @@ namespace BankDal
                 {
                     Transaction j = new Transaction();
                     j.TransactionId = (long)dr1[0];
+                    j.SenderAccNo = (long)dr1[1];
                     j.ReceiverAccNo = (long)dr1[2];
                     j.Branchcode = dr1[3].ToString();
                     j.TransactionDate = dr1[4].ToString();
