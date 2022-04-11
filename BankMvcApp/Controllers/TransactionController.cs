@@ -44,7 +44,7 @@ namespace BankMvcApp.Controllers
                 requestUrl: "api/Transaction/Deposit", trans);
             if (transaction is true)
             {
-                return Content("transaction successfull");
+                return RedirectToAction("TransactionSuccess");
             }
             else
             {
@@ -73,7 +73,7 @@ namespace BankMvcApp.Controllers
                 requestUrl: "api/Transaction/WithDraw", trans);
             if (transaction is true)
             {
-                return Content("transaction successfull");
+                return RedirectToAction("TransactionSuccess");
             }
             else
             {

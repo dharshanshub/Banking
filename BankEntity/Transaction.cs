@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,10 @@ namespace BankEntity
 {
     public class Transaction
     {
-        
+  
         public long ReceiverAccNo { get; set; }
+        
+        [Display(Name = " Account Number")]
         public long SenderAccNo { get; set; }
         public long TransactionId{ get; set; }
         public string Branchcode { get;set; }
