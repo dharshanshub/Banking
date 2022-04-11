@@ -15,25 +15,76 @@ namespace BankMvcApp
 
     public static class Utilities
     {
-        public async static Task<T> SendDataToApi<T>(
+        public async static Task<TResult> SendDataToApi<TInput, TResult>(
             this Controller controller,
             string baseUri,
             string requestUrl,
-            T model)
+            TInput model)
         {
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUri);
-                var postTask = await client.PostAsJsonAsync<T>(requestUrl,model);
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "Token");
 
-                var result = postTask;
-                if (result.IsSuccessStatusCode)
+
+                var response = await client.PostAsJsonAsync(requestUrl, model);
+                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
                 {
-                    return default(T);
+                    var result = await response.Content.ReadFromJsonAsync<TResult>();
+                    return result;
                 }
-                return default(T);
+
+                return default(TResult);
+            }
+
+        }
+
+        public async static Task<TResult> GetResponseFromApi<TResult>(
+            this Controller controller,
+            string baseUri,
+            string requestUrl,
+            int idParameter)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUri);
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "Token");
+
+                var response = await client.GetAsync($"{requestUrl}/{idParameter}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonSerializer.Deserialize<TResult>(
+                        await response.Content.ReadAsStringAsync(),
+                        new JsonSerializerOptions(JsonSerializerDefaults.Web));
+                    return result;
+                }
+                return default(TResult);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public async static Task<T> GetResponseFromApi<T>(
             this Controller controller,

@@ -54,10 +54,10 @@ namespace BankBal
 
         }
 
-        public List<Customer1> GenrateCredentials(Customer customer)
+        public List<Credential> GenrateCredentials(Customer customer)
         {
             CustomerDal dal = new CustomerDal(connectionString);
-            List<Customer1> cust= dal.GenrateCredentials(customer);
+            List<Credential> cust= dal.GenrateCredentials(customer);
          
             return cust;         
 

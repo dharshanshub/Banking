@@ -3,6 +3,7 @@ using BankEntity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace BankApi.Controllers
 {
@@ -27,7 +28,9 @@ namespace BankApi.Controllers
         {
             if(bal.CreateNewUser(cus))
             {
-                return Ok(bal.GenrateCredentials(cus));
+               List<Credential> lst =bal.GenrateCredentials(cus);
+              //  IEnumerable<Credential> enumerable = lst as IEnumerable<Credential>;
+                return Ok(lst);
             }
             else
             {

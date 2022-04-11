@@ -189,7 +189,7 @@ namespace TestProject
          {
             var a = new Customer { MobileNo="9884061001" };
             CustomerDal dal = new CustomerDal(connectionString);
-            List<Customer1> lst = dal.GenrateCredentials(a);
+            List<Credential> lst = dal.GenrateCredentials(a);
             Assert.IsNotNull(lst);
 
         }

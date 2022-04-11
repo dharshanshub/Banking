@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankEntity
 {
-    public class Customer1
+    public class Credential
     {
         public int CRN { get; set; }
         public long AccNo { get; set; }

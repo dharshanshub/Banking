@@ -102,7 +102,7 @@ namespace BankDal
 
         }
        
-        public List<Customer1> GenrateCredentials(Customer customer)
+        public List<Credential> GenrateCredentials(Customer customer)
         {
             try { 
 
@@ -117,8 +117,8 @@ namespace BankDal
                   cmd.Parameters.AddWithValue("@mobno", customer.MobileNo);
                   cmd2.Parameters.AddWithValue("@mobno", customer.MobileNo);
                   SqlDataReader dr = cmd.ExecuteReader();
-                  List<Customer1> cust = new List<Customer1>();
-                Customer1 cus = new Customer1();
+                  List<Credential> cust = new List<Credential>();
+                Credential cus = new Credential();
                 while (dr.Read())
                   {
                     

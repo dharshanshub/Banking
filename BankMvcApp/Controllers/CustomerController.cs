@@ -1,4 +1,5 @@
 ﻿using BankEntity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -30,11 +31,38 @@ namespace BankMvcApp.Controllers
 
             return View(model);
         }
-        public async Task<IActionResult> CreateCustomer()
+      
+        public IActionResult CreateNewUser()
         {
-            return View();
+            var model = new Customer();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewUser(IFormCollection collection)
+        {
+            Customer customer = new Customer();
+            customer.Name = collection["Name"];
+            customer.Email = collection["Email"];
+            customer.Address = collection["Address"];
+            customer.BirthDate = collection["BirthDate"];
+            customer.MobileNo = collection["MobileNo"];
+
+
+            var cred = await this.SendDataToApi<Customer,IEnumerable<Credential>>(
+                baseUri: configuration.GetConnectionString("BankAPIUrl"),
+                requestUrl: "api/Customer/CreateNewUser",customer);
+            return  RedirectToAction("Credentials","Customer",cred);
+                
 
         }
+        public async Task<IActionResult> Credentials(IEnumerable<Credential> cred)
+        {
+         
+            
+            return View(cred);
+        }
+
 
     }
 }
