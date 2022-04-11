@@ -21,9 +21,9 @@ namespace BankApi.Controllers
         {
             return Ok(bal.ShowAllCustomers());
         }
-        [HttpPost]
+        [HttpPost("CreateNewUser")]
       
-        public IActionResult Post(Customer cus)
+        public IActionResult CreateNewUser(Customer cus)
         {
             if(bal.CreateNewUser(cus))
             {
@@ -36,7 +36,7 @@ namespace BankApi.Controllers
 
            
         }
-        [HttpPut("{id:long}")]
+        [HttpPut("UpdateUser/{id:long}")]
      
         public IActionResult UpdateUser(Customer cus,long id)
         {

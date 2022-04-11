@@ -1,0 +1,26 @@
+﻿@model BankEntity.Transaction
+@{
+    ViewData["Title"] = "ViewStatement";
+}
+
+<div class ="container p-5">
+<div class ="card shadow mt-5 m-auto w-50 ">
+     
+    <div class= "card-header bg-info p-2 h3 text-center">Sign in</div>
+    <div class = "card-body">
+        <form asp-action ="ViewStatement" >
+             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             
+            
+       
+         <div class = "form-group">
+             <label asp-for="SenderAccNo" class="col-form-label">  </label>     
+             <input asp-for="SenderAccNo" class="form-control"/>
+             <span asp-validation-for="SenderAccNo" class="text-danger"></span>
+</div>
+<input type="Submit" value="View Statemet" class="btn btn-success"/>
+</form>
+</div>
+</div>
+</div>
+

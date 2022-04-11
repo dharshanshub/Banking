@@ -17,7 +17,7 @@ namespace BankApi.Controllers
             bal = new BeneficiaryBal(configuration.GetConnectionString("BankDbConnection"));
         }
 
-        [HttpPost]
+        [HttpPost("AddBeneficiary")]
 
         public IActionResult AddBeneficiary(Beneficiary beneficiary)
         {
@@ -31,13 +31,13 @@ namespace BankApi.Controllers
             }
 
         }
-        [HttpGet("{id:long}")]
+        [HttpGet("GetBeneficiary/{id:long}")]
         
         public IActionResult GetBeneficiary(long id)
         {
             return Ok(bal.ShowAllBeneficiaries(id));
         }
-        [HttpDelete("{id:long}")]
+        [HttpDelete("DeleteBeneficiary/{id:long}")]
       
         public IActionResult DeleteBeneficiary(long id)
         {
