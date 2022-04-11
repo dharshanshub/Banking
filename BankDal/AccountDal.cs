@@ -77,6 +77,36 @@ namespace BankDal
 
 
         }
+        public bool FreezeAccount(Account account)
+        {
+            string sql = $"Update Accounts set Status='Freeze' where AccNo=@AccNo";
+            //string sql = $"Update Customers set IBPwd =@IbPwd,Address=@Address,Email=@Email,MobileNo=@MobileNo where CRN=(select CRN  From Accounts where Accounts.AccNo=@AccNo)"; 
+
+            OpenConnection();
+            SqlCommand cmd = new SqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@AccNo", account.AccNo);
+      
+           
+            try
+            {
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+              
+                return false;
+                throw;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return true;
+        }
     }
-   
 }
+
+
+        

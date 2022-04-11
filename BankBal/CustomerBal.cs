@@ -19,7 +19,7 @@ namespace BankBal
            CustomerDal  dal = new CustomerDal(connectionString);
        
             customer.IbPassword = RandomString(10);
-            customer.TransactionPwd = RandomString(10);
+          
 
            string id= dal.CreateNewUser(customer);
             AccountBal bal = new AccountBal(connectionString);

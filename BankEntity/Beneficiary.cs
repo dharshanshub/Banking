@@ -11,6 +11,7 @@ namespace BankEntity
     {
         [Key]
         public int BId { get; set; }
+        [Display(Name ="Enter your Account Number")]
         public long SenderAccNo { get; set; }
         public long ReceiverAccNo { get; set; }
         public string NickName { get; set; }

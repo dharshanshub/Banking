@@ -1,4 +1,4 @@
-﻿using BankDal;
+﻿/*using BankDal;
 using BankEntity;
 using NUnit.Framework;
 using System;
@@ -67,7 +67,7 @@ namespace TestProject
             Assert.IsTrue(er);
         }
         //accountdal
-      /*  
+      *//*  
         [Test]
         public void CreateNewUseraccTest()
         {
@@ -90,9 +90,9 @@ namespace TestProject
             var ac=dal.GetALlAccounts().Count;
             Assert.AreEqual(er,ac);
 
-        }*/
+        }*//*
         //
-        /*public void FundTransferTest()
+        *//*public void FundTransferTest()
         {
             var t = new Transaction
             {
@@ -112,7 +112,7 @@ namespace TestProject
             TransactionDal dal = new TransactionDal(connectionString);
             bool er;
             if(dal.FundTransfer(t)) { er = true; } else { er = false; }
-            Assert.IsTrue(er);*/
+            Assert.IsTrue(er);*//*
         //
 
         [Test]
@@ -156,14 +156,14 @@ namespace TestProject
             Assert.IsTrue(er);
         }
         [Test]
-        public void ViewStatement()
+       *//* public void ViewStatement()
         {
             var a = new Account { AccNo = 689341 };
             TransactionDal dal = new TransactionDal(connectionString);
            List<Transaction> lst= dal.ViewStatement(a);
             Assert.IsNotNull(lst);
-        }
-        [Test]
+        }*//*
+
         public void AddBeneficiaryTest()
         {
             var b = new Beneficiary
@@ -197,3 +197,4 @@ namespace TestProject
 
     }
 }
+*/

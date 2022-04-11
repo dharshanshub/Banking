@@ -12,31 +12,15 @@
     <div class="col-md-4">
         <form asp-action="CreateNewUser">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CRN" class="control-label"></label>
-                <input asp-for="CRN" class="form-control" />
-                <span asp-validation-for="CRN" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="BranchCode" class="control-label"></label>
-                <input asp-for="BranchCode" class="form-control" />
-                <span asp-validation-for="BranchCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransactionPwd" class="control-label"></label>
-                <input asp-for="TransactionPwd" class="form-control" />
-                <span asp-validation-for="TransactionPwd" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IbPassword" class="control-label"></label>
-                <input asp-for="IbPassword" class="form-control" />
-                <span asp-validation-for="IbPassword" class="text-danger"></span>
-            </div>
+           
+           
+           
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />

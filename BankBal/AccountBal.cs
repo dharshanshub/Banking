@@ -35,5 +35,19 @@ namespace BankBal
             }
         
         }
+        public bool FreezeAccount(Account account)
+        {
+            AccountDal dal = new AccountDal(connectionString);
+            if (dal.FreezeAccount(account))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
     }
 }

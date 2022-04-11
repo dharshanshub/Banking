@@ -19,7 +19,7 @@ namespace BankDal
         {
 
             string id;
-            string sql = $"insert into Customers(Name,TxnPwd,IBPwd,Email,Address,BirthDate,MobileNo) values (@Name,@TxnPwd,@IBPwd,@Email,@Address,@BirthDate,@MobileNo)";
+            string sql = $"insert into Customers(Name,IBPwd,Email,Address,BirthDate,MobileNo) values (@Name,@IBPwd,@Email,@Address,@BirthDate,@MobileNo)";
 
             OpenConnection();
 
@@ -27,8 +27,7 @@ namespace BankDal
 
             SqlCommand cmd = new SqlCommand(sql, connection);
 
-            cmd.Parameters.AddWithValue("@Name", customer.Name);
-            cmd.Parameters.AddWithValue("@TxnPwd", customer.TransactionPwd);
+            cmd.Parameters.AddWithValue("@Name", customer.Name); 
             cmd.Parameters.AddWithValue("@IBPwd", customer.IbPassword);
             cmd.Parameters.AddWithValue("@Email", customer.Email);
             cmd.Parameters.AddWithValue("@Address", customer.Address);
@@ -79,12 +78,12 @@ namespace BankDal
                     cus.CRN = (int)dr[0];
                     cus.Name = (string)dr[1];
                     cus.BranchCode = (string)dr[2];
-                    cus.TransactionPwd = (string)dr[3];
-                    cus.IbPassword = (string)dr[4];
-                    cus.Email = (string)dr[5];
-                    cus.Address = (string)dr[6];
-                    cus.BirthDate = dr[7].ToString();
-                    cus.MobileNo = (string)dr[8];
+                 
+                    cus.IbPassword = (string)dr[3];
+                    cus.Email = (string)dr[4];
+                    cus.Address = (string)dr[5];
+                    cus.BirthDate = dr[6].ToString();
+                    cus.MobileNo = (string)dr[7];
 
 
                     t_list.Add(cus);
@@ -106,7 +105,7 @@ namespace BankDal
         {
             try { 
 
-                  string sql = $"Select CRN,TxnPwd,IBPwd,BrCode from Customers where MobileNo = @mobno";
+                  string sql = $"Select CRN,IBPwd,BrCode from Customers where MobileNo = @mobno";
                   string sql1 = $"Select AccNo from Accounts where CRN=(Select CRN from Customers where Customers.MobileNo =@mobno)";
                   OpenConnection();
 
@@ -123,9 +122,9 @@ namespace BankDal
                   {
                     
                     cus.CRN = (int)dr[0];
-                    cus.BranchCode = (string)dr[3];
-                    cus.TransactionPwd = (string)dr[1];
-                    cus.IbPassword = (string)dr[2];
+                    cus.BranchCode = (string)dr[2];
+                  
+                    cus.IbPassword = (string)dr[1];
                     
                   }
                 
