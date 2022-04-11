@@ -153,18 +153,18 @@ namespace BankDal
           
         }
 
-        public bool UpdateUsers( Customer customer, Account account)
+        public bool UpdateUsers( Customer customer)
         {
-          
-            string sql = $"Update Customers set IBPwd =@IbPwd,Address=@Address,Email=@Email,MobileNo=@MobileNo where CRN=(select CRN  From Accounts where Accounts.AccNo=@AccNo)"; 
-      
+            string sql = $"Update Customers set Address=@Address,Email=@Email,MobileNo=@MobileNo where CRN=@CRNNo";
+            //string sql = $"Update Customers set IBPwd =@IbPwd,Address=@Address,Email=@Email,MobileNo=@MobileNo where CRN=(select CRN  From Accounts where Accounts.AccNo=@AccNo)"; 
+
             OpenConnection();
             SqlCommand cmd = new SqlCommand(sql, connection);
-            cmd.Parameters.AddWithValue("@IbPwd", customer.IbPassword);
+          
             cmd.Parameters.AddWithValue("@Address", customer.Address);
             cmd.Parameters.AddWithValue("@Email", customer.Email);
             cmd.Parameters.AddWithValue("@MobileNo", customer.MobileNo);
-            cmd.Parameters.AddWithValue("@AccNo", account.AccNo);
+            cmd.Parameters.AddWithValue("@CRNNo", customer.CRN);
 
             try
             {

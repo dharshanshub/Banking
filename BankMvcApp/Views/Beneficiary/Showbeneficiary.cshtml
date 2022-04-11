@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BankEntity.Beneficiary>
+
+@{
+    ViewData["Title"] = "Showbeneficiary";
+}
+
+<h1>Showbeneficiary</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SenderAccNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiverAccNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NickName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BranchName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IFSC)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SenderAccNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceiverAccNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IFSC)
+            </td>
+            <td>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

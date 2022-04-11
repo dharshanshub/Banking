@@ -49,10 +49,10 @@ namespace BankDal
         public bool DeleteBeneficiary(Beneficiary b) 
         {
 
-            string sql = $"DELETE FROM Beneficiary WHERE Payee_Account_Number= @ReceiverAccNo";
+            string sql = $"DELETE FROM Beneficiary WHERE BId= @bid";
             OpenConnection();
             SqlCommand cmd = new SqlCommand(sql, connection);
-            cmd.Parameters.AddWithValue("@ReceiverAccNo", b.ReceiverAccNo);
+            cmd.Parameters.AddWithValue("@bid", b.BId);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -66,9 +66,11 @@ namespace BankDal
             }
             finally
             {
+               
                 CloseConnection();
             }
             return true;
+
         }
 
         public List<Beneficiary> GetAllBeneficiaries(Beneficiary HolderAccountNo)

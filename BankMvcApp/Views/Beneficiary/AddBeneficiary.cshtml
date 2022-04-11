@@ -1,0 +1,51 @@
+﻿@model BankEntity.Beneficiary
+
+@{
+    ViewData["Title"] = "AddBeneficiary";
+}
+
+<h1>AddBeneficiary</h1>
+
+<h4>Beneficiary</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddBeneficiary">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SenderAccNo" class="control-label"></label>
+                <input asp-for="SenderAccNo" class="form-control" />
+                <span asp-validation-for="SenderAccNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiverAccNo" class="control-label"></label>
+                <input asp-for="ReceiverAccNo" class="form-control" />
+                <span asp-validation-for="ReceiverAccNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NickName" class="control-label"></label>
+                <input asp-for="NickName" class="form-control" />
+                <span asp-validation-for="NickName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BranchName" class="control-label"></label>
+                <input asp-for="BranchName" class="form-control" />
+                <span asp-validation-for="BranchName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IFSC" class="control-label"></label>
+                <input asp-for="IFSC" class="form-control" />
+                <span asp-validation-for="IFSC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Beneficiary" class="btn btn-primary" />
+            </div>
+        </form>
+     
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

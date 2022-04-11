@@ -1,0 +1,32 @@
+﻿@model BankEntity.Beneficiary
+
+@{
+    ViewData["Title"] = "ShowAllBeneficiary";
+}
+
+<h1>ShowAllBeneficiary</h1>
+
+<h4>Beneficiary</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ShowAllBeneficiary">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="SenderAccNo" class="control-label"></label>
+                <input asp-for="SenderAccNo" class="form-control" />
+                <span asp-validation-for="SenderAccNo" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Show" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -39,11 +39,11 @@ namespace BankApi.Controllers
 
            
         }
-        [HttpPut("UpdateUser/{id:long}")]
+        [HttpPost("UpdateUser")]
      
-        public IActionResult UpdateUser(Customer cus,long id)
+        public IActionResult UpdateUser(Customer cus)
         {
-            return Ok(bal.UpdateUsers(cus, id));
+            return Ok(bal.UpdateUsers(cus));
 
 
         }

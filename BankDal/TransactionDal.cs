@@ -15,7 +15,7 @@ namespace BankDal
     {
         public TransactionDal(string connectionString) : base(connectionString) { }
 
-        public string FundTransfer(Transaction t)//done
+        public bool FundTransfer(Transaction t)
         {
             string id="";
 
@@ -65,7 +65,9 @@ namespace BankDal
             }
             catch (Exception)
             {
+                
                 trans.Rollback();
+                return false;
                
             }
             finally
@@ -73,7 +75,7 @@ namespace BankDal
                 CloseConnection();
             
             }
-            return id;
+            return true;
 
         }
         public bool Withdraw(Transaction t)
@@ -163,7 +165,7 @@ namespace BankDal
             return true;
 
         }
-        public List<Transaction> ViewStatement(Account Account)//Done
+        public List<Transaction> ViewStatement(Transaction transaction)//Done
         {
             try
             {
@@ -175,8 +177,8 @@ namespace BankDal
                 SqlCommand cmd = new SqlCommand(sql, connection);
                 SqlCommand cmd1 = new SqlCommand(sql1, connection);
 
-                cmd.Parameters.AddWithValue("@AccNo", Account.AccNo);
-                cmd1.Parameters.AddWithValue("@AccNo", Account.AccNo);
+                cmd.Parameters.AddWithValue("@AccNo", transaction.SenderAccNo);
+                cmd1.Parameters.AddWithValue("@AccNo", transaction.SenderAccNo);
 
                 SqlDataReader dr = cmd.ExecuteReader();
                

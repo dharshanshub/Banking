@@ -12,26 +12,33 @@ namespace BankBal
     {
         public TransactionBal(string connectionString) : base(connectionString) { }
         string connectionString = @"Data Source=LAPTOP-NKUJCDUA\SQLEXPRESS;database=Bank;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public string FundTransfer(Transaction t)
+        public bool FundTransfer(Transaction t)
         {
             TransactionDal dal = new TransactionDal(connectionString);
 
             var dateAndTime = DateTime.Now;
+            t.TransactionType = "Debit";
 
             t.TransactionDate = dateAndTime.Date.ToString();
 
-            string id = dal.FundTransfer(t);
-           return id;
+            if (dal.FundTransfer(t))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+         
 
 
         }
-        public List<Transaction> ViewStatement(long id)
+        public List<Transaction> ViewStatement(Transaction transaction)
         {
             TransactionDal dal = new TransactionDal(connectionString);
-            Account account = new Account();
-            account.AccNo = id;
+          
 
-            List<Transaction> list = dal.ViewStatement(account);
+            List<Transaction> list = dal.ViewStatement(transaction);
             return list;
         }
 

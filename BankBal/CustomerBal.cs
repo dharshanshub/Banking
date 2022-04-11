@@ -38,12 +38,12 @@ namespace BankBal
             return list;
 
         }
-        public bool UpdateUsers(Customer customer,  long id)
+        public bool UpdateUsers(Customer customer)
         {
             CustomerDal dal = new CustomerDal(connectionString);
-            Account account = new Account();
-            account.AccNo = id;
-            if (dal.UpdateUsers(customer, account))
+          
+        
+            if (dal.UpdateUsers(customer))
             {
                 return true;
             }

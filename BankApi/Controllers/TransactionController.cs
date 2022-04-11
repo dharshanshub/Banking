@@ -17,13 +17,13 @@ namespace BankApi.Controllers
             bal = new TransactionBal(configuration.GetConnectionString("BankDbConnection"));
         }
 
-        [HttpPost("FundTrasfer")]
+        [HttpPost("FundTransfer")]
       
         public IActionResult FundTransfer(Transaction transaction)
         {
-          string id = bal.FundTransfer(transaction);
 
-            return Ok(id);
+
+            return Ok(bal.FundTransfer(transaction));
 
 
         }
@@ -41,11 +41,11 @@ namespace BankApi.Controllers
             return Ok(bal.Deposit(transaction));
 
         }
-        [HttpGet("ViewStatement/{id:long}")]
+        [HttpPost("ViewStatement")]
    
-        public IActionResult ViewStatement(long id)
+        public IActionResult ViewStatement(Transaction transaction)
         {
-            return Ok(bal.ViewStatement(id));
+            return Ok(bal.ViewStatement(transaction));
         }
 
     }

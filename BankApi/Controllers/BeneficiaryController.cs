@@ -31,15 +31,17 @@ namespace BankApi.Controllers
             }
 
         }
-        [HttpGet("GetBeneficiary/{id:long}")]
+        [HttpPost("GetBeneficiary")]
         
-        public IActionResult GetBeneficiary(long id)
+        public IActionResult GetBeneficiary(Beneficiary beneficiary)
         {
+            long id;
+            id = beneficiary.SenderAccNo;
             return Ok(bal.ShowAllBeneficiaries(id));
         }
-        [HttpDelete("DeleteBeneficiary/{id:long}")]
+        [HttpPost("DeleteBeneficiary/{id:int}")]
       
-        public IActionResult DeleteBeneficiary(long id)
+        public IActionResult DeleteBeneficiary(int id)
         {
             return Ok(bal.DeleteBeneficiary(id));
         }
