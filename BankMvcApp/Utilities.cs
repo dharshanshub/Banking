@@ -1,4 +1,5 @@
 ﻿using BankEntity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net.Http;
@@ -25,7 +26,8 @@ namespace BankMvcApp
             {
                 client.BaseAddress = new Uri(baseUri);
                 client.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "Token");
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", 
+                    controller.HttpContext.Session.GetString("Token"));
 
 
                 var response = await client.PostAsJsonAsync(requestUrl, model);

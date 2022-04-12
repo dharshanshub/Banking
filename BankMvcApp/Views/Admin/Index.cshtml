@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Banking";
+ 
+    
+    Layout = "_Layout";
+
+}
+<body>
+    <section style="padding-top: 140px;" id="feature" class="about">
+      <div  class="container">
+
+        <div class="row justify-content-end">
+        
+
+          <div class="col-lg-6 video-box align-self-baseline position-relative">
+            <img style="  border-radius: 12px;  width:500px; height: 300px !important;"src="assets/img/fund.jpg" class="img-fluid" alt="">
+            
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content">
+            <h3 style="color:#ff7f50">Fund Transfer</h3>
+            <p class="fst-italic">
+             Transfer your funds instantly without any delay high speed fund transfer between accounts within Our bank
+            </p>
+               <h5 style="color:#ff7f50"><strong>Click here to Trasnfer Funds</strong></h5>       
+                    <a asp-area="Views" asp-controller="Transaction" asp-action="Deposit"><input type="Submit" value="Deposit" class = "btn1"></a>
+                   
+            <p>
+             
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+      </section>
+     
+
+      
+      <section id="feature" class="about">
+     <div style="border-color:#ff7f50; border-width:10px;" class="container">
+
+        <div class="row justify-content-end">
+        
+
+          <div class="col-lg-6 video-box align-self-baseline position-relative">
+            <img style="  border-radius: 12px;  width:485px; height: 300px !important;"src="assets/img/statementfinal.jpg" class="img-fluid" alt="">
+            
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content">
+            <h3 style="color:#ff7f50">WithDraw</h3>
+            <p class="fst-italic">
+           Withdraw Money
+            </p>
+               <h5 style="color:#ff7f50"><strong>Click here to Withdraw </strong></h5>       
+                    <a asp-area="Views" asp-controller="Transaction" asp-action="WithDraw"><input type="Submit" value="WithDraw" class = "btn1"></a>
+            <p>
+             
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+      </section>
+       <section id="feature" class="about">
+     <div style="border-color:#ff7f50; border-width:10px;" class="container">
+
+        <div class="row justify-content-end">
+        
+
+          <div class="col-lg-6 video-box align-self-baseline position-relative">
+            <img style="  border-radius: 12px;  height: 300px !important;"src="assets/img/bene.jpg" class="img-fluid" alt="">
+            
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content">
+            <h3 style="color:#ff7f50">Beneficiary</h3>
+            <p class="fst-italic">
+            Deposit Money
+            </p>
+               <h5 style="color:#ff7f50"><strong>Click here to Deposit the money</strong></h5>       
+                    <a asp-area="Views" asp-controller="Transaction" asp-action="Deposit"><input type="Submit" value="Deposit" class = "btn1"> </a>
+            <p>
+             
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+      </section>
+      <section style="padding-bottom: 140px";id="feature" class="about">
+        <div style="border-color:#ff7f50;" class="container">
+
+        <div class="row justify-content-end">
+        
+
+          <div class="col-lg-6 video-box align-self-baseline position-relative">
+            <center><img style="  border-radius: 12px; height: 300px !important; "src="assets/img/pngegg.png" class="img-fluid" alt=""></center>
+            
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content">
+            <h3 style="color:#ff7f50">Edit Profile</h3>
+            <p class="fst-italic">
+             Edit your Details update you name,password. 
+            </p>
+               <h5 style="color:#ff7f50"><strong>Click here to Edit your Profile</strong></h5>       
+                     <a asp-area="Views" asp-controller="Customer" asp-action="EditCustomer"><input type="Submit" value="Edit Profile" class = "btn1"> </a>
+            <p>
+             
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+      </section>
+    </body>

@@ -8,6 +8,7 @@ namespace BankApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class BeneficiaryController : ControllerBase
     {
         BeneficiaryBal bal;

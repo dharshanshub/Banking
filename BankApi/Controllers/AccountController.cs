@@ -6,8 +6,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace BankApi.Controllers
 {
+  
     [Route("api/[controller]")]
     [ApiController]
+   
     public class AccountController : ControllerBase
     {
         AccountBal bal;

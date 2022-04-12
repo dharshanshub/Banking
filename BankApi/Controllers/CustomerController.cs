@@ -9,6 +9,7 @@ namespace BankApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authentication.Authorization]
     public class CustomerController : ControllerBase
     {
         CustomerBal bal;

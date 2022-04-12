@@ -58,53 +58,9 @@
             <ul>
               <li><a href="about.html">About</a></li>
               <li><a href="team.html">Team</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li>
-                        @{
-                            User user = null;
-                            string message = "Welcome ";
-                            if(Context.Session?.GetString("User")!=null){
-                                var sessionJson = Context.Session.GetString("User");
-                                user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(sessionJson);
+             
+                   
 
-                            }
-                            message += (user == null) ? "Guest" : user.FirstName; 
-                        }
-
-                    
-                        @if(user==null){
-                        <a class="getstarted" asp-area="Views" asp-controller="Account" asp-action="Login">Login</a>
-                        }else{
-                        <a class="getstarted" asp-area="Views" asp-controller="Home" asp-action="Index">Logout</a>
-                                <!--log out view should be added -->
-                        }
-
-                     <div>
-                        
-                            @if(user==null){
-                               <small> <a class = text-light >@message</a></small>
-                            }
-                            else
-                            {
-                               <a class=text-light> <small> @message</small></a>
-                            }
-                        
-                    </div>
           
           </li>
         </ul>

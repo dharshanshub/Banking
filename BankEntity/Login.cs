@@ -9,7 +9,7 @@ namespace BankEntity
     public  class Login
     {
         public long AccNo { get; set; }
-        public string Username { get; set; }
+     
         public string Password { get; set; }
     }
 }

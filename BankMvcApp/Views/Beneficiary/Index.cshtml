@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Banking";
+ 
+    
+    Layout = "_Layout";
+
+}
+<body>
+    <section style="padding-top: 140px;" id="feature" class="about">
+      <div  class="container">
+
+        <div class="row justify-content-end">
+        
+
+          <div class="col-lg-6 video-box align-self-baseline position-relative">
+            <img style="  border-radius: 12px;  width:500px; height: 300px !important;"src="assets/img/fund.jpg" class="img-fluid" alt="">
+            
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content">
+            <h3 style="color:#ff7f50">Add Beneficiary</h3>
+            <p class="fst-italic">
+             Add beneficiary and transfer funds
+            </p>
+               <h5 style="color:#ff7f50"><strong>Click here to Add Beneficiary</strong></h5>       
+                    <a asp-area="Views" asp-controller="Beneficiary" asp-action="AddBeneficiary"><input type="Submit" value="Add Beneficiary" class = "btn1"></a>
+                   
+            <p>
+             
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+      </section>
+     
+
+      
+      <section id="feature" class="about">
+     <div style="border-color:#ff7f50; border-width:10px;" class="container">
+
+        <div class="row justify-content-end">
+        
+
+          <div class="col-lg-6 video-box align-self-baseline position-relative">
+            <img style="  border-radius: 12px;  width:485px; height: 300px !important;"src="assets/img/statementfinal.jpg" class="img-fluid" alt="">
+            
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content">
+            <h3 style="color:#ff7f50">Show Beneficiary</h3>
+            <p class="fst-italic">
+             View all your Beneficiaries
+            </p>
+               <h5 style="color:#ff7f50"><strong>Click here to View Statement</strong></h5>       
+                    <a asp-area="Views" asp-controller="Beneficiary" asp-action="ShowAllBeneficiary"><input type="Submit" value="Show Beneficiary" class = "btn1"></a>
+            <p>
+             
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+      
+     
+    </body>
