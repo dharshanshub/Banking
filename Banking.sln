@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Banking", "Banking\Banking.csproj", "{17CE5A58-3AD2-46EC-B695-F2E22A7D7A18}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{D251763F-4BF0-4504-ABC5-520A7ED51034}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankBal", "BankBal\BankBal.csproj", "{48DAA41A-FB29-4A95-AD1A-8DB56F648096}"
@@ -15,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankEntity", "BankEntity\Ba
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApi", "BankApi\BankApi.csproj", "{DAFFD6B0-0F2E-4E3A-96AC-9AA1290A5B5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankMvcApp", "BankMvcApp\BankMvcApp.csproj", "{0C13218E-72A1-4893-B267-BABDC67EE4FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankMvcApp", "BankMvcApp\BankMvcApp.csproj", "{0C13218E-72A1-4893-B267-BABDC67EE4FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{17CE5A58-3AD2-46EC-B695-F2E22A7D7A18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17CE5A58-3AD2-46EC-B695-F2E22A7D7A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17CE5A58-3AD2-46EC-B695-F2E22A7D7A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17CE5A58-3AD2-46EC-B695-F2E22A7D7A18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D251763F-4BF0-4504-ABC5-520A7ED51034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D251763F-4BF0-4504-ABC5-520A7ED51034}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D251763F-4BF0-4504-ABC5-520A7ED51034}.Release|Any CPU.ActiveCfg = Release|Any CPU
