@@ -27,31 +27,34 @@ namespace BankApi.Authentication
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(' ').Last();
             if (token is not null)
             {
-                try
+                if (token != "Token" && token != "Bearer")
                 {
-                    //Create a SecurityToken Handler
-                    System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler tokenHandler = new();
-                    var key = System.Text.Encoding.UTF8.GetBytes(_appSettings.AppSecretKey);
-                    tokenHandler.ValidateToken(
-                    token,
-                    new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    try
                     {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(key),
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ClockSkew = System.TimeSpan.Zero
-                    }, out Microsoft.IdentityModel.Tokens.SecurityToken validatedToken);
-                    var jwtToken = validatedToken as System.IdentityModel.Tokens.Jwt.JwtSecurityToken;
-                    var username = jwtToken.Claims.First(c => c.Type == "username").Value;
-                    context.Items["username"] = username;
+                        //Create a SecurityToken Handler
+                        System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler tokenHandler = new();
+                        var key = System.Text.Encoding.UTF8.GetBytes(_appSettings.AppSecretKey);
+                        tokenHandler.ValidateToken(
+                        token,
+                        new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(key),
+                            ValidateIssuer = false,
+                            ValidateAudience = false,
+                            ClockSkew = System.TimeSpan.Zero
+                        }, out Microsoft.IdentityModel.Tokens.SecurityToken validatedToken);
+                        var jwtToken = validatedToken as System.IdentityModel.Tokens.Jwt.JwtSecurityToken;
+                        var username = jwtToken.Claims.First(c => c.Type == "username").Value;
+                        context.Items["username"] = username;
 
 
 
-                }
-                catch (System.Exception)
-                {
-                    throw;
+                    }
+                    catch (System.Exception)
+                    {
+                        throw;
+                    }
                 }
             }
             //else nothing to be done by the middleware.

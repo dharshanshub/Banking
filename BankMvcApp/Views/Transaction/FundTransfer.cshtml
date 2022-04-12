@@ -2,12 +2,14 @@
 
 @{
     ViewData["Title"] = "FundTransfer";
+     Layout = "_Layout1";
 }
-
+<<section id ="fund">
 <h1>FundTransfer</h1>
 
-<h4>Transaction</h4>
-<hr />
+
+<hr/>
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="FundTransfer">
@@ -44,10 +46,14 @@
                 <input type="submit" value="Transfer" class="btn btn-primary" />
             </div>
         </form>
+        <p>@ViewBag.result</p>
     </div>
 </div>
+</div>
+
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
+</section>

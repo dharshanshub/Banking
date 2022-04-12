@@ -94,20 +94,20 @@ namespace BankMvcApp.Controllers
             if (cred)
             {
 
-                return RedirectToAction("UpdatedSucessfully");
+                ViewBag.result = "Updation Successfull";
+                return View();
             }
             else
             {
 
-                return Content("updation failed");
+                
+                ViewBag.result = "Updation Failed";
+                return View();
             }
 
 
         }
-        public IActionResult UpdatedSucessfully()
-        {
-            return View();
-        }
+       
     }
 }
 

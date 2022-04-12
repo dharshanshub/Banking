@@ -44,12 +44,16 @@ namespace BankMvcApp.Controllers
                 requestUrl: "api/Transaction/Deposit", trans);
             if (transaction is true)
             {
-                return RedirectToAction("TransactionSuccess");
+
+                ViewBag.result = "Transaction Successfull";
+                return View();
             }
             else
             {
 
-                return Content("trensaction failed");
+
+                ViewBag.result = "Transaction Failed";
+                return View();
             }
         }
         public IActionResult WithDraw()
@@ -73,12 +77,16 @@ namespace BankMvcApp.Controllers
                 requestUrl: "api/Transaction/WithDraw", trans);
             if (transaction is true)
             {
-                return RedirectToAction("TransactionSuccess");
+
+                ViewBag.result = "Transaction Successfull";
+                return View();
             }
             else
             {
 
-                return Content("trensaction failed");
+
+                ViewBag.result = "Transaction Failed";
+                return View();
             }
         }
         public IActionResult FundTransfer()
@@ -105,20 +113,19 @@ namespace BankMvcApp.Controllers
            
             if (transaction )
             {
-                
-                return RedirectToAction("TransactionSuccess");
+
+                ViewBag.result = "Transaction Successfull";
+                return View();
             }
             else
             {
 
-                return Content("transaction failed");
+
+                ViewBag.result = "Transaction Failed";
+                return View();
             }
         }
-        public IActionResult TransactionSuccess()
-        {
-
-            return View();
-        }
+      
         public IActionResult ViewStatement()
         {
             var model = new Transaction();

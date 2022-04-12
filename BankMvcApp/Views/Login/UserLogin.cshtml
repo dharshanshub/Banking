@@ -1,17 +1,18 @@
 ﻿@model BankEntity.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "UserLogin";
 }
 
-<h1>Login</h1>
+<h1>UserLogin</h1>
 
 <h4>LoginViewModel</h4>
-<section id="log">
-    <h4>AdminLogin</h4>
+<hr />
+<section id="log1">
+    <h4>UserLogin</h4>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Login">
+        <form asp-action="UserLogin">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="AccountNo" class="control-label"></label>
@@ -23,6 +24,7 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="LogIn" class="btn btn-primary" />
             </div>
@@ -30,5 +32,6 @@
     </div>
 </div>
 </section>
+
 
 

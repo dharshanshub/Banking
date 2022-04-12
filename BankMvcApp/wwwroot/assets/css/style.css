@@ -1846,3 +1846,65 @@ section {
     font-size: 16px;
     border-color: #ff7f50;
 }
+#fund{
+   padding-bottom:80px;
+    padding-left:50px;
+    padding-top:70px;
+}
+#sts {
+    padding-top:240px;
+   padding-bottom: 210px;
+}
+#edit {
+    padding-top: 60px;
+    padding-bottom: 115px;
+    padding-left: 50px
+}
+#create {
+    padding-top:170px;
+    padding-bottom: 200px;
+    padding-left: 50px
+}
+#Cred{
+    padding-top: 170px;
+    padding-bottom: 530px;
+    position:relative;
+    width:100%;
+    height:300px
+
+}
+#log {
+    padding-top: 170px;
+    padding-bottom: 220px;
+    padding-left: 50px;
+}
+#log1 {
+    padding-top: 170px;
+    padding-bottom: 200px;
+    padding-left: 50px;
+}
+#Add {
+    padding-top: 170px;
+    padding-bottom: 200px;
+    padding-left: 50px
+}
+#show {
+    padding-top: 170px;
+    padding-bottom: 245px;
+    padding-left: 50px
+}
+#dep {
+    padding-top: 160px;
+    padding-bottom: 200px;
+    padding-left: 50px
+}
+#With {
+    padding-top: 130px;
+    padding-bottom: 150px;
+    padding-left: 50px
+}
+#free {
+    padding-top: 170px;
+    padding-bottom: 269px;
+    padding-left: 50px
+}

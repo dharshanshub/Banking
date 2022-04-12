@@ -44,7 +44,17 @@ namespace BankMvcApp.Controllers
             var cred = await this.SendDataToApi<Beneficiary, bool>(
                 baseUri: configuration.GetConnectionString("BankAPIUrl"),
                 requestUrl: "api/Beneficiary/AddBeneficiary", beneficiary);
-            return View();
+            if (cred)
+            {
+                ViewBag.result = "Updation Successfull";
+                return View();
+            }
+            else
+            {
+                ViewBag.result = "Updation Failed";
+                return View();
+
+            }
 
 
         }

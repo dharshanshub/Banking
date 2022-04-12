@@ -2,12 +2,10 @@
 
 @{
     ViewData["Title"] = "CreateNewUser";
+     Layout = "_Layout";
 }
 
-<h1>CreateNewUser</h1>
-
-<h4>Customer</h4>
-<hr />
+<section id = "create">
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateNewUser">
@@ -45,10 +43,11 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        <p>@ViewBag.result</p>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+</section>
 

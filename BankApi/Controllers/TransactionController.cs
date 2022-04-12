@@ -8,7 +8,7 @@ namespace BankApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authentication.Authorization]
+
     public class TransactionController : ControllerBase
     {
         TransactionBal bal;

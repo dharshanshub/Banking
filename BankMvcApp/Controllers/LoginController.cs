@@ -26,22 +26,48 @@ namespace BankMvcApp.Controllers
             LoginViewModel lg = new LoginViewModel();
             lg.AccountNo = long.Parse(collection["AccountNo"]);
             lg.Password = collection["Password"];
-            var model = await this.SendDataToApi<LoginViewModel, AuthenticatedUser<long>>(
+            var model = await this.SendDataToApi<LoginViewModel,bool>(
               baseUri: configuration.GetConnectionString("BankApiUrl"),
              requestUrl: $"api/Login/AuthenticateAdmin", lg);
+            if (model)
+            {
+               return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                ModelState.AddModelError("", " Wrong  Password ");
+                return View(collection);
+            }
 
-            HttpContext.Session.SetString("Token", model.Token);
-            HttpContext.Session.SetString("RoleName", model.RoleName);
-            HttpContext.Session.SetString("Username", model.Name);
-            return View(model);
+        }
 
-
-
+        public IActionResult UserLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UserLogin(IFormCollection collection)
+        {
+            LoginViewModel lg = new LoginViewModel();
+            lg.AccountNo = long.Parse(collection["AccountNo"]);
+            lg.Password = collection["Password"];
+            var model = await this.SendDataToApi<LoginViewModel, bool>(
+              baseUri: configuration.GetConnectionString("BankApiUrl"),
+             requestUrl: $"api/Login/AuthenticateUser", lg);
+            if (model)
+            {
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                ModelState.AddModelError("", " Wrong  Password ");
+                return View(collection);
+            }
 
         }
 
 
 
-       
+
     }
 }

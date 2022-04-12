@@ -25,6 +25,18 @@ namespace BankBal
                 return false;   
             }
         }
+        public bool CustomerLogin(LoginViewModel model)
+        {
+            LoginDal dal = new LoginDal(connectionString);
+            if (dal.UserLogin(model))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
     }

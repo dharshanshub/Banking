@@ -2,11 +2,12 @@
 
 @{
     ViewData["Title"] = "EditCustomer";
+     Layout = "_Layout1";
 }
-
+<section id ="edit">
 <h1>EditCustomer</h1>
 
-<h4>Customer</h4>
+<h4>Edit Customer</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -41,10 +42,10 @@
                 <input type="submit" value="Update" class="btn btn-primary" />
             </div>
         </form>
+        <p>@ViewBag.result</p>
     </div>
 </div>
+</section>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 

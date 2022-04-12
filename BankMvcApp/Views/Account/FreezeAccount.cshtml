@@ -2,11 +2,12 @@
 
 @{
     ViewData["Title"] = "FreezeAccount";
+     Layout = "_Layout1";
 }
 
 <h1>FreezeAccount</h1>
-
-<h4>Account</h4>
+<section id="free">
+<h4>Freeze Account</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,10 +24,8 @@
                 <input type="submit" value="Freeze" class="btn btn-primary" />
             </div>
         </form>
+        <p>@ViewBag.result</p>
     </div>
+     <
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+</section>

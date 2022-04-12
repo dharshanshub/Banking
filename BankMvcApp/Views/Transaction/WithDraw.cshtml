@@ -2,11 +2,12 @@
 
 @{
     ViewData["Title"] = "WithDraw";
+     Layout = "_Layout1";
 }
 
 <h1>WithDraw</h1>
-
-<h4>Transaction</h4>
+<section id="With">
+<h4>Withdraw</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -36,10 +37,9 @@
                 <input type="submit" value="Submit" class="btn btn-primary" />
             </div>
         </form>
+        <p>@ViewBag.result</p>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</section>
 

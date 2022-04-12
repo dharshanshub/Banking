@@ -35,18 +35,17 @@ namespace BankMvcApp.Controllers
                 requestUrl: "api/Account/FreezeAccount", account);
             if (cred)
             {
-                return RedirectToAction("Freezed", "Account");
+                ViewBag.result = "Account Freezed";
+                return View(); 
             }
             else
             {
-                return Content("failed");
+                ViewBag.result = "not Freezed";
+                return View(); 
             }
 
 
         }
-        public IActionResult Freezed()
-        {
-            return View();
-        }
+       
     }
 }

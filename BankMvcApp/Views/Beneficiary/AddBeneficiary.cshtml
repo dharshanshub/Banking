@@ -2,11 +2,11 @@
 
 @{
     ViewData["Title"] = "AddBeneficiary";
+     Layout = "_Layout1";
 }
-
+<section id ="Add">
 <h1>AddBeneficiary</h1>
 
-<h4>Beneficiary</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -41,11 +41,9 @@
                 <input type="submit" value="Create Beneficiary" class="btn btn-primary" />
             </div>
         </form>
-     
+       <p>@ViewBag.result</p>
     </div>
 </div>
+</section>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
