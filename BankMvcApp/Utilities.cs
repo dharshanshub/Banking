@@ -26,7 +26,8 @@ namespace BankMvcApp
             {
                 client.BaseAddress = new Uri(baseUri);
                 client.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "Token");
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", 
+                    controller.HttpContext.Session.GetString("Token"));
              
 
 

@@ -26,6 +26,9 @@ namespace BankMvcApp
                 options.IdleTimeout = TimeSpan.FromMinutes(60);
             });
 
+    
+
+
             services.AddControllersWithViews();
         }
 

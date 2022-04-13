@@ -1,4 +1,5 @@
 ﻿using BankEntity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace BankMvcApp.Controllers
 {
+ 
     public class TransactionController : Controller
     {
         private readonly ILogger<TransactionController> _logger;

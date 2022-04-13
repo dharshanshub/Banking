@@ -1,4 +1,5 @@
 ﻿using BankEntity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -71,6 +72,7 @@ namespace BankMvcApp.Controllers
             return View(model: cred);
 
         }
+    
         public IActionResult EditCustomer()
         {
             var model = new Customer();
